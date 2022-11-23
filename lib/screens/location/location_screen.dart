@@ -1,5 +1,3 @@
-import 'package:delivery_app/bloc/autocomplate/autocomplate_bloc.dart';
-import 'package:delivery_app/widgets/gmap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_google_places_hoc081098/flutter_google_places_hoc081098.dart';
@@ -8,7 +6,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 
 import '../../bloc/geolocation/geolocation_bloc.dart';
-import '../../widgets/location_search_box.dart';
 
 class LocationScreen extends StatefulWidget {
   static const String routeName = '/location';
@@ -58,7 +55,6 @@ class _LocationScreenState extends State<LocationScreen> {
                     target: startLocation,
                     zoom: 12.0,
                   ),
-                  padding: EdgeInsets.only(top: 100, right: 10, bottom: 10),
                 );
               } else {
                 return const Text('Gomething went wrong');

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 ThemeData theme() {
   return ThemeData(
       appBarTheme: const AppBarTheme(
-        color: Color(0xff2f1253),
+        color: Color.fromARGB(255, 95, 72, 7),
       ),
-      primaryColor: const Color(0xff7549d0),
-      primaryColorDark: const Color(0xff2f1253),
-      primaryColorLight: const Color(0xFF977BCE),
-      scaffoldBackgroundColor: const Color(0xFFAB9ACC),
-      backgroundColor: const Color(0xff88d9e6),
+      primaryColor: Color.fromARGB(255, 206, 167, 62),
+      primaryColorDark: Color.fromARGB(255, 206, 167, 62),
+      primaryColorLight: Color.fromRGBO(255, 206, 167, 62),
+      scaffoldBackgroundColor: Color.fromARGB(255, 243, 243, 243),
+      backgroundColor: Color.fromARGB(255, 243, 243, 243),
       fontFamily: 'Futura',
       textTheme: const TextTheme(
         headline1: TextStyle(

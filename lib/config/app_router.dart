@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../models/models.dart';
 import '../screens/screens.dart';
 
 class AppRouter {
@@ -18,9 +19,11 @@ class AppRouter {
       case FilterScreen.routeName:
         return FilterScreen.route();
       case RestaurantDetailsScreen.routeName:
-        return RestaurantDetailsScreen.route();
+        return RestaurantDetailsScreen.route(
+            restaurant: settings.arguments as Restaurant);
       case RestaurantListingScreen.routeName:
-        return RestaurantListingScreen.route();
+        return RestaurantListingScreen.route(
+            restaurant: settings.arguments as List<Restaurant>);
 
       default:
         return _errorRoute();

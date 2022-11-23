@@ -1,27 +1,30 @@
+import 'package:delivery_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class RestaurantListingScreen extends StatelessWidget {
-  static const String routeName = '/restaurantListing';
+import '../../models/models.dart';
 
-  static Route route() {
+class RestaurantListingScreen extends StatelessWidget {
+  static const String routeName = '/restaurant-listing';
+
+  static Route route({required List<Restaurant> restaurant}) {
     return MaterialPageRoute(
-        builder: (_) => const RestaurantListingScreen(),
+        builder: (_) => RestaurantListingScreen(restaurant: restaurant),
         settings: const RouteSettings(name: routeName));
   }
 
-  const RestaurantListingScreen({super.key});
+  final List<Restaurant> restaurant;
+
+  const RestaurantListingScreen({super.key, required this.restaurant});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Restaurant Listing')),
-        body: Center(
-          child: ElevatedButton(
-            child: const Text('Home Screen'),
-            onPressed: () {
-              Navigator.pushNamed(context, '/');
-            },
-          ),
-        ));
+      appBar: AppBar(title: const Text('Restaurants')),
+      body: ListView.builder(
+          itemCount: restaurant.length,
+          itemBuilder: (context, index) {
+            return RestaurantCard(restaurant: restaurant[index]);
+          }),
+    );
   }
 }
