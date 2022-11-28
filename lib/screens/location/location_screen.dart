@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_google_places_hoc081098/flutter_google_places_hoc081098.dart';
 import 'package:google_api_headers/google_api_headers.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+// ignore: depend_on_referenced_packages
 import 'package:google_maps_webservice/places.dart';
 
 import '../../bloc/geolocation/geolocation_bloc.dart';
@@ -85,7 +86,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     //form google_maps_webservice package
                     final plist = GoogleMapsPlaces(
                       apiKey: googleApikey,
-                      apiHeaders: await GoogleApiHeaders().getHeaders(),
+                      apiHeaders: await const GoogleApiHeaders().getHeaders(),
                       //from google_api_headers package
                     );
                     String placeid = place.placeId ?? "0";
@@ -101,10 +102,10 @@ class _LocationScreenState extends State<LocationScreen> {
                   }
                 },
                 child: Padding(
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   child: Card(
                     color: Colors.white,
-                    child: Container(
+                    child: SizedBox(
                         width: MediaQuery.of(context).size.width - 40,
                         child: ListTile(
                           title: Text(

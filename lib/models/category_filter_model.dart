@@ -7,7 +7,7 @@ class CategoryFilter extends Equatable {
   final Category category;
   final bool value;
 
-  CategoryFilter(
+  const CategoryFilter(
       {required this.id, required this.category, required this.value});
 
   CategoryFilter copyWith({

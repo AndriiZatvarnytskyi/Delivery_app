@@ -12,8 +12,12 @@ class AppRouter {
         return LocationScreen.route();
       case BasketScreen.routeName:
         return BasketScreen.route();
+      case EditBasketScreen.routeName:
+        return EditBasketScreen.route();
       case CheckoutScreen.routeName:
         return CheckoutScreen.route();
+        case VoucherScreen.routeName:
+        return VoucherScreen.route();
       case DeliveryTimeScreen.routeName:
         return DeliveryTimeScreen.route();
       case FilterScreen.routeName:

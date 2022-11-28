@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                       }),
                 ),
               ),
-              FoodSearchBox(),
+              const FoodSearchBox(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Align(
@@ -61,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: Restaurant.restaurant.length,
                   itemBuilder: (context, index) {

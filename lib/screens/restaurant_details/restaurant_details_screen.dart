@@ -1,6 +1,8 @@
 import 'package:delivery_app/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../bloc/basket/basket_bloc.dart';
 import '../../widgets/widgets.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
@@ -24,46 +26,44 @@ class RestaurantDetailsScreen extends StatelessWidget {
           elevation: 0,
         ),
         bottomNavigationBar: BottomAppBar(
-            child: Container(
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 50,
-                    ),
-                    backgroundColor: Theme.of(context).primaryColor,
-                    shape: RoundedRectangleBorder()),
-                onPressed: () {},
-                child: Text('Basket'))
-          ]),
-        )),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 50,
+                  ),
+                  backgroundColor: Theme.of(context).primaryColor,
+                  shape: const RoundedRectangleBorder()),
+              onPressed: () {
+                Navigator.pushNamed(context, '/basket');
+              },
+              child: const Text('Basket'))
+        ])),
         extendBodyBehindAppBar: true,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                  height: 250,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.vertical(
-                        bottom: Radius.elliptical(
-                            MediaQuery.of(context).size.width, 60)),
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(restaurant.imageUrl)),
-                  )),
-              RestaurantInformation(restaurant: restaurant),
-              ListView.builder(
-                padding: EdgeInsets.zero,
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: restaurant.tags.length,
-                itemBuilder: ((context, index) {
-                  return _buildMenuItems(restaurant, context, index);
-                }),
-              )
-            ],
-          ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+                height: 250,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.vertical(
+                      bottom: Radius.elliptical(
+                          MediaQuery.of(context).size.width, 60)),
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(restaurant.imageUrl)),
+                )),
+            RestaurantInformation(restaurant: restaurant),
+            ListView.builder(
+              padding: EdgeInsets.zero,
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: restaurant.tags.length,
+              itemBuilder: ((context, index) {
+                return _buildMenuItems(restaurant, context, index);
+              }),
+            )
+          ],
         ));
   }
 
@@ -89,7 +89,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
                     children: [
                       Container(
                         color: Colors.white,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: ListTile(
                           dense: true,
                           contentPadding: EdgeInsets.zero,
@@ -108,16 +108,23 @@ class RestaurantDetailsScreen extends StatelessWidget {
                                 Text('\$${menuItem.price}',
                                     style:
                                         Theme.of(context).textTheme.bodyText1),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.add_circle,
-                                      color: Theme.of(context).primaryColor,
-                                    ))
+                                BlocBuilder<BasketBloc, BasketState>(
+                                  builder: (context, state) {
+                                    return IconButton(
+                                        onPressed: () {
+                                          context.read<BasketBloc>()
+                                            ..add(AddItem(menuItem));
+                                        },
+                                        icon: Icon(
+                                          Icons.add_circle,
+                                          color: Theme.of(context).primaryColor,
+                                        ));
+                                  },
+                                )
                               ]),
                         ),
                       ),
-                      Divider(
+                      const Divider(
                         height: 2,
                       )
                     ],

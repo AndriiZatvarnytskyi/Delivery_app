@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 class MenuItems extends Equatable {
   final int id;
@@ -9,7 +8,7 @@ class MenuItems extends Equatable {
   final String description;
   final double price;
 
-  MenuItems(
+  const MenuItems(
       {required this.id,
       required this.name,
       required this.restaurantId,
@@ -21,7 +20,7 @@ class MenuItems extends Equatable {
       [id, name, restaurantId, description, price, category];
 
   static List<MenuItems> menuItems = [
-    MenuItems(
+    const MenuItems(
       id: 1,
       restaurantId: [2, 3, 6, 8],
       name: 'Pizza',
@@ -29,7 +28,7 @@ class MenuItems extends Equatable {
       description: 'Pizza with Tomatoes',
       price: 5.99,
     ),
-    MenuItems(
+    const MenuItems(
       id: 2,
       restaurantId: [6, 8, 9, 10, 11, 12],
       name: 'Caesar',
@@ -37,7 +36,7 @@ class MenuItems extends Equatable {
       description: 'A cold beverage',
       price: 4.50,
     ),
-    MenuItems(
+    const MenuItems(
       id: 3,
       restaurantId: [1, 4, 5, 6, 8, 11, 12],
       name: 'Strudel',
@@ -45,7 +44,7 @@ class MenuItems extends Equatable {
       description: 'A cold beverage',
       price: 4.50,
     ),
-    MenuItems(
+    const MenuItems(
       id: 4,
       restaurantId: [2, 3, 6, 13],
       name: 'Black Burger',
@@ -53,7 +52,7 @@ class MenuItems extends Equatable {
       description: 'A cold beverage',
       price: 4.50,
     ),
-    MenuItems(
+    const MenuItems(
       id: 5,
       restaurantId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
       name: 'Coca Cola',

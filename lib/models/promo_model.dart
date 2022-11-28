@@ -6,7 +6,7 @@ class Promo extends Equatable {
   final String description;
   final String imageUrl;
 
-  Promo(
+  const Promo(
       {required this.id,
       required this.title,
       required this.description,
@@ -16,23 +16,29 @@ class Promo extends Equatable {
   List<Object?> get props => [id, title, description, imageUrl];
 
   static List<Promo> promos = [
-    Promo(
+    const Promo(
       id: 1,
       title: 'FREE Delivery on Your 3 Orders.',
-      description: 'Place an order of \$10 or more and the delivery fee is on us',
-      imageUrl: 'https://asset.kompas.com/crops/2A15_RHdnUPUsF60tuUwHxABswQ=/0x0:1000x667/750x500/data/photo/2021/10/21/617111bf79ded.jpg',
+      description:
+          'Place an order of \$10 or more and the delivery fee is on us',
+      imageUrl:
+          'https://asset.kompas.com/crops/2A15_RHdnUPUsF60tuUwHxABswQ=/0x0:1000x667/750x500/data/photo/2021/10/21/617111bf79ded.jpg',
     ),
-    Promo(
+    const Promo(
       id: 1,
       title: 'FREE Delivery on Your 3 Orders.',
-      description: 'Place an order of \$10 or more and the delivery fee is on us',
-      imageUrl: 'https://asset.kompas.com/crops/2A15_RHdnUPUsF60tuUwHxABswQ=/0x0:1000x667/750x500/data/photo/2021/10/21/617111bf79ded.jpg',
+      description:
+          'Place an order of \$10 or more and the delivery fee is on us',
+      imageUrl:
+          'https://asset.kompas.com/crops/2A15_RHdnUPUsF60tuUwHxABswQ=/0x0:1000x667/750x500/data/photo/2021/10/21/617111bf79ded.jpg',
     ),
-    Promo(
+    const Promo(
       id: 1,
       title: 'FREE Delivery on Your 3 Orders.',
-      description: 'Place an order of \$10 or more and the delivery fee is on us',
-      imageUrl: 'https://asset.kompas.com/crops/2A15_RHdnUPUsF60tuUwHxABswQ=/0x0:1000x667/750x500/data/photo/2021/10/21/617111bf79ded.jpg',
+      description:
+          'Place an order of \$10 or more and the delivery fee is on us',
+      imageUrl:
+          'https://asset.kompas.com/crops/2A15_RHdnUPUsF60tuUwHxABswQ=/0x0:1000x667/750x500/data/photo/2021/10/21/617111bf79ded.jpg',
     ),
   ];
 }

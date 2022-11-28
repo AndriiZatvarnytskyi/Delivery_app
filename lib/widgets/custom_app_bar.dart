@@ -9,7 +9,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
         centerTitle: false,
-        leading: IconButton(icon: Icon(Icons.person), onPressed: () {}),
+        leading: IconButton(icon: const Icon(Icons.person), onPressed: () {}),
         title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             'CURRENT LOCATION',
@@ -29,5 +29,5 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(56.0);
+  Size get preferredSize => const Size.fromHeight(56.0);
 }

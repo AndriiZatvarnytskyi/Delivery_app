@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 
 ThemeData theme() {
   return ThemeData(
+      elevatedButtonTheme: const ElevatedButtonThemeData(
+          style: ButtonStyle(
+              backgroundColor:
+                  MaterialStatePropertyAll(Color.fromARGB(255, 206, 167, 62)))),
       appBarTheme: const AppBarTheme(
         color: Color.fromARGB(255, 95, 72, 7),
       ),
-      primaryColor: Color.fromARGB(255, 206, 167, 62),
-      primaryColorDark: Color.fromARGB(255, 206, 167, 62),
-      primaryColorLight: Color.fromRGBO(255, 206, 167, 62),
-      scaffoldBackgroundColor: Color.fromARGB(255, 243, 243, 243),
-      backgroundColor: Color.fromARGB(255, 243, 243, 243),
+      primaryColor: const Color(0xFFCEA73E),
+      primaryColorDark: const Color.fromARGB(255, 206, 167, 62),
+      primaryColorLight: const Color.fromRGBO(255, 206, 167, 62),
+      scaffoldBackgroundColor: const Color.fromARGB(255, 243, 243, 243),
+      backgroundColor: const Color.fromARGB(255, 243, 243, 243),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: Color.fromARGB(255, 243, 243, 243)),
       fontFamily: 'Futura',
       textTheme: const TextTheme(
         headline1: TextStyle(

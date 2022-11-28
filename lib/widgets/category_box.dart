@@ -1,8 +1,6 @@
 import 'package:delivery_app/models/models.dart';
 import 'package:flutter/material.dart';
 
-import '../models/category_model.dart';
-
 class CategoryBox extends StatelessWidget {
   final Category category;
 
@@ -19,7 +17,7 @@ class CategoryBox extends StatelessWidget {
             arguments: restaurant);
       },
       child: Container(
-        margin: EdgeInsets.only(right: 5.0),
+        margin: const EdgeInsets.only(right: 5.0),
         width: 80,
         decoration: BoxDecoration(
             color: Theme.of(context).primaryColor,
