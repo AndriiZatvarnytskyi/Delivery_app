@@ -1,7 +1,9 @@
+import 'package:delivery_app/repositories/voucher/voucher_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/basket/basket_bloc.dart';
+import '../../bloc/voucher/voucher_bloc.dart';
 import '../../models/models.dart';
 
 class VoucherScreen extends StatelessWidget {
@@ -59,21 +61,27 @@ class VoucherScreen extends StatelessWidget {
                       children: [
                         Expanded(
                             child: TextFormField(
+                                onChanged: (value) async {
+                                  // print(await VoucherRepository()
+                                  //     .searchVoucher(value));
+                                },
                                 decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: 'Voucher Code',
-                          contentPadding: const EdgeInsets.only(
-                              left: 20.0, bottom: 5.0, top: 12.5),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        )))
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  hintText: 'Voucher Code',
+                                  contentPadding: const EdgeInsets.only(
+                                      left: 20.0, bottom: 5.0, top: 12.5),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide:
+                                        const BorderSide(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                )))
                       ]),
                 ),
                 Text(
@@ -83,57 +91,74 @@ class VoucherScreen extends StatelessWidget {
                       .headline4!
                       .copyWith(color: Theme.of(context).primaryColor),
                 ),
-                ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: Voucher.vouchers.length,
-                    itemBuilder: ((context, index) {
-                      return Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        margin: const EdgeInsets.only(top: 5, bottom: 5),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5.0)),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('1x',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline5!
-                                      .copyWith(
-                                          color:
-                                              Theme.of(context).primaryColor)),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Expanded(
-                                child: Text(
-                                  Voucher.vouchers[index].code,
-                                  style: Theme.of(context).textTheme.headline6,
-                                ),
-                              ),
-                              BlocBuilder<BasketBloc, BasketState>(
-                                builder: (context, state) {
-                                  return TextButton(
-                                    onPressed: () {
-                                      context.read<BasketBloc>().add(
-                                          AddVoucher(Voucher.vouchers[index]));
-                                    },
-                                    child: Text('Apply',
+                BlocBuilder<VoucherBloc, VoucherState>(
+                  builder: (context, state) {
+                    if (state is VoucherLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    if (state is VoucherLoaded) {
+                      return ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: state.vouchers.length,
+                          itemBuilder: ((context, index) {
+                            return Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              margin: const EdgeInsets.only(top: 5, bottom: 5),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5.0)),
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('1x',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline6!
+                                            .headline5!
                                             .copyWith(
                                                 color: Theme.of(context)
                                                     .primaryColor)),
-                                  );
-                                },
-                              )
-                            ]),
-                      );
-                    }))
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        state.vouchers[index].code,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6,
+                                      ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        context.read<VoucherBloc>().add(
+                                            SelectVoucher(
+                                                voucher:
+                                                    state.vouchers[index]));
+                                      },
+                                      child: Text('Apply',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline6!
+                                              .copyWith(
+                                                  color: Theme.of(context)
+                                                      .primaryColor)),
+                                    )
+                                  ]),
+                            );
+                          }));
+                    }
+                    if (state is VoucherSelected) {
+                      return Text('Voucher Selected)');
+                    } else {
+                      return Text('Something went wrong');
+                    }
+                  },
+                )
               ],
             ),
           ),
