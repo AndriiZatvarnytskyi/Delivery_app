@@ -20,7 +20,7 @@ class CustomCategoryFilter extends StatelessWidget {
         }
         if (state is FiltersLoaded) {
           return ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: state.filter.categoryFilters.length,
               itemBuilder: (context, index) {

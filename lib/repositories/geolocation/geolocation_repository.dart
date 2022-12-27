@@ -1,5 +1,6 @@
 import 'package:delivery_app/repositories/geolocation/base_geolocation_repository.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart' as location;
 
 class GeolocationRepository extends BaseGeolocationRepository {
   GeolocationRepository();
@@ -8,13 +9,15 @@ class GeolocationRepository extends BaseGeolocationRepository {
     bool serviceEnabled;
     LocationPermission permission;
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
-    }
+    location.Location checkLocation = location.Location();
 
     permission = await Geolocator.checkPermission();
     permission = await Geolocator.requestPermission();
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      bool isTurnedOn = await checkLocation.requestService();
+    }
 
     if (permission == LocationPermission.denied) {
       return Future.error('Location permissions are denied');
@@ -24,16 +27,10 @@ class GeolocationRepository extends BaseGeolocationRepository {
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
-    // Position position = await Geolocator.getCurrentPosition(
-    //     desiredAccuracy: LocationAccuracy.low);
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.low);
 
     return await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
   }
-  // Future<Position> getCurrentLocation() async {
-  //    LocationPermission permission;
-  //  permission = await Geolocator.requestPermission();
-  //   return await Geolocator.getCurrentPosition(
-  //       desiredAccuracy: LocationAccuracy.high);
-//  }
 }

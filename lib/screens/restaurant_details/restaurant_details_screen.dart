@@ -40,30 +40,29 @@ class RestaurantDetailsScreen extends StatelessWidget {
               child: const Text('Basket'))
         ])),
         extendBodyBehindAppBar: true,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-                height: 250,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.vertical(
-                      bottom: Radius.elliptical(
-                          MediaQuery.of(context).size.width, 60)),
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(restaurant.imageUrl)),
-                )),
-            RestaurantInformation(restaurant: restaurant),
-            ListView.builder(
-              padding: EdgeInsets.zero,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: restaurant.tags.length,
-              itemBuilder: ((context, index) {
-                return _buildMenuItems(restaurant, context, index);
-              }),
-            )
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                  height: 250,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(restaurant.imageUrl)),
+                  )),
+              RestaurantInformation(restaurant: restaurant),
+              ListView.builder(
+                padding: EdgeInsets.zero,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: restaurant.tags.length,
+                itemBuilder: ((context, index) {
+                  return _buildMenuItems(restaurant, context, index);
+                }),
+              )
+            ],
+          ),
         ));
   }
 
@@ -112,8 +111,9 @@ class RestaurantDetailsScreen extends StatelessWidget {
                                   builder: (context, state) {
                                     return IconButton(
                                         onPressed: () {
-                                          context.read<BasketBloc>()
-                                            ..add(AddItem(menuItem));
+                                          context
+                                              .read<BasketBloc>()
+                                              .add(AddItem(menuItem));
                                         },
                                         icon: Icon(
                                           Icons.add_circle,

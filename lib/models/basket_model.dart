@@ -7,23 +7,30 @@ class Basket extends Equatable {
   final Voucher? voucher;
   final DeliveryTime? deliveryTime;
 
-  Basket(
-      {this.items = const <MenuItems>[], this.cutlery = false, this.voucher, this.deliveryTime});
+  const Basket(
+      {this.items = const <MenuItems>[],
+      this.cutlery = false,
+      this.voucher,
+      this.deliveryTime});
 
-  Basket copyWith({List<MenuItems>? items, bool? cutlery, Voucher? voucher, DeliveryTime? deliveryTime}) {
+  Basket copyWith(
+      {List<MenuItems>? items,
+      bool? cutlery,
+      Voucher? voucher,
+      DeliveryTime? deliveryTime}) {
     return Basket(
-        items: items ?? this.items,
-        cutlery: cutlery ?? this.cutlery,
-        voucher: voucher ?? this.voucher,
-        deliveryTime: deliveryTime ?? this.deliveryTime,
-        );
+      items: items ?? this.items,
+      cutlery: cutlery ?? this.cutlery,
+      voucher: voucher ?? this.voucher,
+      deliveryTime: deliveryTime ?? this.deliveryTime,
+    );
   }
 
   @override
   List<Object?> get props => [items, cutlery, voucher, deliveryTime];
 
   Map itemQuantity(items) {
-    var quantity = Map();
+    var quantity = {};
     items.forEach((item) {
       if (!quantity.containsKey(item)) {
         quantity[item] = 1;

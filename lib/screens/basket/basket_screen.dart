@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/parser.dart';
-
 import '../../bloc/basket/basket_bloc.dart';
 
 class BasketScreen extends StatelessWidget {
@@ -39,9 +37,9 @@ class BasketScreen extends StatelessWidget {
                   backgroundColor: Theme.of(context).primaryColor,
                   shape: const RoundedRectangleBorder()),
               onPressed: () {
-                //Navigator.pushNamed(context, '/edit-basket');
+                Navigator.pushNamed(context, '/location');
               },
-              child: const Text('Apply'))
+              child: const Text('Add Location'))
         ])),
         body: SingleChildScrollView(
           child: Padding(
@@ -88,11 +86,11 @@ class BasketScreen extends StatelessWidget {
                                 onChanged: (bool? newValue) {
                                   context
                                       .read<BasketBloc>()
-                                      .add(ToggleSwitch());
+                                      .add(const ToggleSwitch());
                                 },
                               ));
                         } else {
-                          return Text('Something went wrong');
+                          return const Text('Something went wrong');
                         }
                       },
                     ),
@@ -116,8 +114,8 @@ class BasketScreen extends StatelessWidget {
                       return state.basket.items.isEmpty
                           ? Container(
                               width: double.infinity,
-                              margin: EdgeInsets.only(top: 5.0),
-                              padding: EdgeInsets.symmetric(
+                              margin: const EdgeInsets.only(top: 5.0),
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 10),
                               decoration: BoxDecoration(
                                   color: Colors.white,
@@ -180,7 +178,7 @@ class BasketScreen extends StatelessWidget {
                                 );
                               });
                     } else {
-                      return Text('Something went wrong');
+                      return const Text('Something went wrong');
                     }
                   },
                 ),
@@ -235,7 +233,7 @@ class BasketScreen extends StatelessWidget {
                                           .textTheme
                                           .headline6);
                             } else {
-                              return Text('Something went wrong.');
+                              return const Text('Something went wrong.');
                             }
                           },
                         )
@@ -283,7 +281,7 @@ class BasketScreen extends StatelessWidget {
                                           .textTheme
                                           .headline6);
                             } else {
-                              return Text('Something went wrong');
+                              return const Text('Something went wrong');
                             }
                           },
                         ),
@@ -305,7 +303,7 @@ class BasketScreen extends StatelessWidget {
                     child: BlocBuilder<BasketBloc, BasketState>(
                       builder: (context, state) {
                         if (state is BasketLoading) {
-                          return Center(
+                          return const Center(
                             child: CircularProgressIndicator(),
                           );
                         }
@@ -368,7 +366,7 @@ class BasketScreen extends StatelessWidget {
                             ],
                           );
                         } else {
-                          return Text('Something went wrong');
+                          return const Text('Something went wrong');
                         }
                       },
                     ))

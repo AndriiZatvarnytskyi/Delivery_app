@@ -19,6 +19,7 @@ class RestaurantCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
+              alignment: Alignment.bottomCenter,
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
@@ -28,6 +29,19 @@ class RestaurantCard extends StatelessWidget {
                       image: DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(restaurant.imageUrl))),
+                ),
+                Container(
+                  width: double.infinity,
+                  color: Colors.grey.withOpacity(0.5),
+                  child: Center(
+                    child: Text(
+                      restaurant.name,
+                      style: Theme.of(context).textTheme.headline1!.copyWith(
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white,
+                          letterSpacing: 2.5),
+                    ),
+                  ),
                 ),
                 Positioned(
                   top: 10,
@@ -54,15 +68,8 @@ class RestaurantCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    restaurant.name,
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
                   RestaurantTags(restaurant: restaurant),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Text(

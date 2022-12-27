@@ -8,6 +8,7 @@ abstract class GeolocationEvent extends Equatable {
 
 class LoadGeolocation extends GeolocationEvent {}
 
+
 class UpdateGeolocation extends GeolocationEvent {
   final Position position;
 

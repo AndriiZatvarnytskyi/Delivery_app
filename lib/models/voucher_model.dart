@@ -8,7 +8,7 @@ class Voucher extends Equatable {
   final String code;
   final double value;
 
-  Voucher({required this.id, required this.code, required this.value});
+  const Voucher({required this.id, required this.code, required this.value});
 
   Voucher copyWith({
     String? id,
@@ -47,9 +47,9 @@ class Voucher extends Equatable {
   @override
   List<Object?> get props => [id, code, value];
 
-  static List<Voucher> vouchers = [
-    Voucher(id: '1', code: 'SAVE5', value: 5.0),
-    Voucher(id: '2', code: 'SAVE5', value: 10.0),
-    Voucher(id: '3', code: 'SAVE5', value: 15.0),
-  ];
+  // static List<Voucher> vouchers = [
+  //   const Voucher(id: '1', code: 'SAVE5', value: 5.0),
+  //   const Voucher(id: '2', code: 'SAVE5', value: 10.0),
+  //   const Voucher(id: '3', code: 'SAVE5', value: 15.0),
+  // ];
 }

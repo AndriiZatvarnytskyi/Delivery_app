@@ -12,6 +12,7 @@ part 'voucher_state.dart';
 class VoucherBloc extends Bloc<VoucherEvent, VoucherState> {
   final VoucherRepository _voucherRepository;
   StreamSubscription? _voucherSubscription;
+
   VoucherBloc({required VoucherRepository voucherRepository})
       : _voucherRepository = voucherRepository,
         super(VoucherLoading()) {

@@ -34,7 +34,7 @@ class DeliveryTimeScreen extends StatelessWidget {
               child: const Text('Done'))
         ])),
         body: SizedBox(
-          child:  Padding(
+          child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,27 +47,29 @@ class DeliveryTimeScreen extends StatelessWidget {
                       .copyWith(color: Theme.of(context).primaryColor),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 10, bottom: 10),
+                  margin: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(children: [
                     ElevatedButton(
                         onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
                             content: Text('Delivery is Today!'),
                             duration: Duration(seconds: 2),
                           ));
                         },
-                        child: Text('Today')),
-                    SizedBox(
+                        child: const Text('Today')),
+                    const SizedBox(
                       width: 10,
                     ),
                     ElevatedButton(
                         onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
                             content: Text('Delivery is Tomorrow!'),
                             duration: Duration(seconds: 2),
                           ));
                         },
-                        child: Text('Tomorrow'))
+                        child: const Text('Tomorrow'))
                   ]),
                 ),
                 Text(
@@ -96,7 +98,8 @@ class DeliveryTimeScreen extends StatelessWidget {
                                   },
                                   child: Text(
                                     DeliveryTime.deliveryTimes[index].value,
-                                    style: Theme.of(context).textTheme.headline6,
+                                    style:
+                                        Theme.of(context).textTheme.headline6,
                                   ),
                                 ),
                               );

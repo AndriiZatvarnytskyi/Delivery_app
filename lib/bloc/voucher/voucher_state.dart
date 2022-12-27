@@ -12,7 +12,7 @@ class VoucherLoading extends VoucherState {}
 class VoucherLoaded extends VoucherState {
   final List<Voucher> vouchers;
 
-  VoucherLoaded({this.vouchers = const <Voucher> []});
+  const VoucherLoaded({this.vouchers = const <Voucher>[]});
 
   @override
   List<Object> get props => [vouchers];
@@ -21,7 +21,7 @@ class VoucherLoaded extends VoucherState {
 class VoucherSelected extends VoucherState {
   final Voucher voucher;
 
-  VoucherSelected({required this.voucher});
+  const VoucherSelected({required this.voucher});
 
   @override
   List<Object> get props => [voucher];

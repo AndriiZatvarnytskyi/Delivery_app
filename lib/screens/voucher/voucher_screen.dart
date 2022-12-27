@@ -1,10 +1,6 @@
-import 'package:delivery_app/repositories/voucher/voucher_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../bloc/basket/basket_bloc.dart';
 import '../../bloc/voucher/voucher_bloc.dart';
-import '../../models/models.dart';
 
 class VoucherScreen extends StatelessWidget {
   static const String routeName = '/voucher';
@@ -106,7 +102,8 @@ class VoucherScreen extends StatelessWidget {
                           itemBuilder: ((context, index) {
                             return Container(
                               width: double.infinity,
-                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               margin: const EdgeInsets.only(top: 5, bottom: 5),
                               decoration: BoxDecoration(
                                   color: Colors.white,
@@ -122,7 +119,7 @@ class VoucherScreen extends StatelessWidget {
                                             .copyWith(
                                                 color: Theme.of(context)
                                                     .primaryColor)),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 20,
                                     ),
                                     Expanded(
@@ -153,9 +150,9 @@ class VoucherScreen extends StatelessWidget {
                           }));
                     }
                     if (state is VoucherSelected) {
-                      return Text('Voucher Selected)');
+                      return const Text('Voucher Selected)');
                     } else {
-                      return Text('Something went wrong');
+                      return const Text('Something went wrong');
                     }
                   },
                 )
